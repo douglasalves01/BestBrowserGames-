@@ -8,7 +8,7 @@ export const createUserToken = async (email, req, res) => {
     "nossosecret"
   );
   res.status(200).json({
-    message: "Você está atutenticado",
+    message: "Você está autenticado",
     token: token,
     email: email,
   });
