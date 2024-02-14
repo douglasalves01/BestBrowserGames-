@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import { run } from "./db/conn.js";
 import { userRouter } from "./routes/userRoutes.js";
+import { gamesRouter } from "./routes/gamesRoutes.js";
 
 const app = express();
 
@@ -14,6 +15,7 @@ app.use(
 );
 app.use(express.json());
 app.use("/", userRouter);
+app.use("/", gamesRouter);
 run();
 
 app.listen(3000, (err) => {

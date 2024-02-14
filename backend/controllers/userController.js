@@ -29,34 +29,38 @@ export class UserController {
       res.status(422).json({ message: "A data de nascimento é obrigatória!" });
       return;
     }
-    //checar se o usuário já existe
-    const registroExistente = await client
-      .db("best-browser-games")
-      .collection("users")
-      .findOne({ email });
-    if (registroExistente) {
-      res.status(422).json({ message: "Por favor, utilize outro email!" });
-      return;
+    try {
+      //checar se o usuário já existe
+      const registroExistente = await client
+        .db("best-browser-games")
+        .collection("users")
+        .findOne({ email });
+      if (registroExistente) {
+        res.status(422).json({ message: "Por favor, utilize outro email!" });
+        return;
+      }
+      //criar a senha
+      const salt = await bcrypt.genSalt(12);
+      const passwordHash = await bcrypt.hash(password, salt);
+      //registrar o usuário
+      const newUser = {
+        name,
+        email,
+        password: passwordHash,
+        country,
+        state,
+        birthDate,
+      };
+
+      await client
+        .db("best-browser-games")
+        .collection("users")
+        .insertOne(newUser);
+
+      res.status(201).json({ message: "Usuário registrado com sucesso!" });
+    } catch (error) {
+      res.status(422).json({ message: error.message });
     }
-    //criar a senha
-    const salt = await bcrypt.genSalt(12);
-    const passwordHash = await bcrypt.hash(password, salt);
-    //registrar o usuário
-    const newUser = {
-      name,
-      email,
-      password: passwordHash,
-      country,
-      state,
-      birthDate,
-    };
-
-    await client
-      .db("best-browser-games")
-      .collection("users")
-      .insertOne(newUser);
-
-    res.status(201).json({ message: "Usuário registrado com sucesso!" });
   }
   static async login(req, res) {
     const { email, password } = req.body;
@@ -69,25 +73,30 @@ export class UserController {
       res.status(422).json({ message: "A senha é obrigatória" });
       return;
     }
-    //checar se o usuário já existe
-    const registroExistente = await client
-      .db("best-browser-games")
-      .collection("users")
-      .findOne({ email });
-    if (!registroExistente) {
-      res.status(422).json({ message: "Por favor, utilize outro email!" });
-      return;
-    }
 
-    //checar senha inserida com senha do banco(hash)
-    const checkPassword = await bcrypt.compare(
-      password,
-      registroExistente.password
-    );
-    if (!checkPassword) {
-      res.status(422).json({ message: "Senha inválida" });
-      return;
+    try {
+      //checar se o usuário já existe
+      const registroExistente = await client
+        .db("best-browser-games")
+        .collection("users")
+        .findOne({ email });
+      if (!registroExistente) {
+        res.status(422).json({ message: "Por favor, utilize outro email!" });
+        return;
+      }
+
+      //checar senha inserida com senha do banco(hash)
+      const checkPassword = await bcrypt.compare(
+        password,
+        registroExistente.password
+      );
+      if (!checkPassword) {
+        res.status(422).json({ message: "Senha inválida" });
+        return;
+      }
+      await createUserToken(registroExistente.email, req, res);
+    } catch (error) {
+      res.status(422).json({ message: error.message });
     }
-    await createUserToken(registroExistente.email, req, res);
   }
 }
