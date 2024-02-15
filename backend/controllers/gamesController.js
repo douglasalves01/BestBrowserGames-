@@ -1,4 +1,5 @@
 import { client } from "../db/conn.js";
+import { MongoClient, ObjectId } from "mongodb";
 export class GamesController {
   static async createGames(req, res) {
     const { nome, categoria, urlAcesso, urlVideo, descricao, image } = req.body;
@@ -46,28 +47,40 @@ export class GamesController {
       res.status(422).json({ message: error.message });
     }
   }
-  static async updateGames(req, res) {}
+  static async updateGames(req, res) {
+    const id = req.params.id;
+    const { nome, categoria, urlAcesso, urlVideo, descricao, image } = req.body;
+    //regitro de games
+    const newGame = {
+      nome,
+      categoria,
+      urlAcesso,
+      urlVideo,
+      descricao,
+      image,
+    };
+
+    try {
+      await client
+        .db("best-browser-games")
+        .collection("games")
+        .updateOne({ _id: new ObjectId(id) }, { $set: newGame });
+      res.status(200).json({ message: "Game atualizado com sucesso!" });
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  }
   static async deleteGames(req, res) {
     const id = req.params.id;
 
-    //verificar se a todo a ser removida foi tem o iduser do usuario logado
-    const token = getToken(req);
-    const user = await getUserByToken(token);
-
-    const todoSql = "select * from todo where id=$1 and iduser=$2";
-    const todoUserExists = await conn.query(todoSql, [id, user.id]);
-
-    if (todoUserExists.rows.length === 0) {
-      res.status(500).json({
-        message:
-          "Houve um problema ao deletar a nota! Tente novamente mais tarde!",
-      });
-      return;
-    }
-    const deleteSql = "delete from todo where id=$1";
     try {
-      await conn.query(deleteSql, [id]);
-      res.status(200).json({ message: "Game deletado com sucesso!" });
+      const result = await client
+        .db("best-browser-games")
+        .collection("games")
+        .deleteOne({ _id: new ObjectId(id) });
+      if (result) {
+        res.status(200).json({ message: "Game deletado com sucesso!" });
+      }
     } catch (error) {
       res.status(422).json({ message: error.message });
     }

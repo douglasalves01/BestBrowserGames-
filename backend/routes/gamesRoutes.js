@@ -4,5 +4,9 @@ import { checkToken } from "../helpers/check-token.js";
 export const gamesRouter = express.Router();
 
 gamesRouter.post("/games/create", checkToken, GamesController.createGames);
-gamesRouter.patch("/games/update", checkToken, GamesController.updateGames);
-gamesRouter.delete("/games/delete", checkToken, GamesController.deleteGames);
+gamesRouter.patch("/games/update/:id", checkToken, GamesController.updateGames);
+gamesRouter.delete(
+  "/games/delete/:id",
+  checkToken,
+  GamesController.deleteGames
+);
