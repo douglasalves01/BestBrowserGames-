@@ -1,4 +1,5 @@
 import Avatar from "@mui/material/Avatar";
+import Alert from "@mui/material/Alert";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
@@ -84,7 +85,11 @@ const Login = () => {
               onChange={(event) => setPassword(event.target.value)}
               autoComplete="current-password"
             />
-            {error && <p style={{ color: "red" }}>{error}</p>}
+            {error && (
+              <Alert severity="warning" onClose={() => setError("")}>
+                {error}
+              </Alert>
+            )}
             <Button
               type="submit"
               fullWidth

@@ -4,7 +4,7 @@ import { createUserToken } from "../helpers/create-user-token.js";
 export class UserController {
   static async register(req, res) {
     const { name, email, password, country, state, birthDate } = req.body;
-    console.log(name);
+
     if (!name) {
       res.status(422).json({ message: "O nome é obrigatório!" });
       return;
