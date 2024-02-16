@@ -5,9 +5,10 @@ import {
   Navigate,
 } from "react-router-dom";
 import Login from "./views/Login";
-import Dahsboard from "./views/Dashboard";
 import Register from "./views/Register";
-
+import CadastroCategoria from "./views/CadastroCategoria";
+import CadastroGame from "./views/CadastroGame";
+import Home from "./views/Home";
 function App() {
   return (
     <Router>
@@ -15,7 +16,9 @@ function App() {
         <Route path="/" element={<Navigate to="/login" />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/dashboard" element={<Dahsboard />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/cadastro/game" element={<CadastroGame />} />
+        <Route path="/cadastro/categoria" element={<CadastroCategoria />} />
       </Routes>
     </Router>
   );
