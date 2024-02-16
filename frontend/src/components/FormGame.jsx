@@ -1,4 +1,3 @@
-import Avatar from "@mui/material/Avatar";
 import Alert from "@mui/material/Alert";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -15,7 +14,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import axios from "axios";
 const defaultTheme = createTheme();
 
-const Login = () => {
+const FormGame = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -29,7 +28,7 @@ const Login = () => {
         if (response.status === 200) {
           const token = response.data.token;
           localStorage.setItem("token", token);
-          navigate("/home");
+          navigate("/dashboard");
         }
       })
       .catch((error) => {
@@ -49,11 +48,8 @@ const Login = () => {
             alignItems: "center",
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-            <LockOutlinedIcon />
-          </Avatar>
           <Typography component="h1" variant="h5">
-            Login
+            Cadastrar Game
           </Typography>
           <Box
             component="form"
@@ -96,15 +92,8 @@ const Login = () => {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Registrar
+              Cadastrar
             </Button>
-            <Grid container>
-              <Grid item>
-                <Link href="/register" variant="body2">
-                  {"Não tem uma conta ainda? Registre-se"}
-                </Link>
-              </Grid>
-            </Grid>
           </Box>
         </Box>
       </Container>
@@ -112,4 +101,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default FormGame;

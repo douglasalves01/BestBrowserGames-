@@ -1,4 +1,3 @@
-import Avatar from "@mui/material/Avatar";
 import Alert from "@mui/material/Alert";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -8,28 +7,37 @@ import TextField from "@mui/material/TextField";
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import PropTypes from "prop-types";
+
 import axios from "axios";
+
 const defaultTheme = createTheme();
 
-const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+const FormCategoria = ({ token }) => {
+  const [categoria, setCategoria] = useState("");
   const [error, setError] = useState("");
+  const [sucess, setSucess] = useState("");
   const navigate = useNavigate();
 
   function handleSubmit(event) {
     event.preventDefault();
     axios
-      .post("http://localhost:3000/user/login", { email, password })
+      .post(
+        "http://localhost:3000/categoria/create",
+        { categoria },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
       .then((response) => {
-        if (response.status === 200) {
-          const token = response.data.token;
-          localStorage.setItem("token", token);
-          navigate("/home");
+        if (response.status === 201) {
+          setCategoria("");
+          setSucess(response.data.message);
         }
       })
       .catch((error) => {
@@ -49,11 +57,8 @@ const Login = () => {
             alignItems: "center",
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-            <LockOutlinedIcon />
-          </Avatar>
           <Typography component="h1" variant="h5">
-            Login
+            Cadastrar Categoria
           </Typography>
           <Box
             component="form"
@@ -65,26 +70,20 @@ const Login = () => {
               margin="normal"
               required
               fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
-              value={email}
-              onChange={(event) => setEmail(event.target.value)}
+              id="categoria"
+              label="Categoria"
+              name="categoria"
+              autoComplete="categoria"
+              value={categoria}
+              onChange={(event) => setCategoria(event.target.value)}
               autoFocus
             />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              value={password}
-              onChange={(event) => setPassword(event.target.value)}
-              autoComplete="current-password"
-            />
+            {sucess && (
+              <Alert severity="success" onClose={() => setSucess("")}>
+                {sucess}
+              </Alert>
+            )}
+
             {error && (
               <Alert severity="warning" onClose={() => setError("")}>
                 {error}
@@ -96,20 +95,15 @@ const Login = () => {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Registrar
+              Cadastrar
             </Button>
-            <Grid container>
-              <Grid item>
-                <Link href="/register" variant="body2">
-                  {"Não tem uma conta ainda? Registre-se"}
-                </Link>
-              </Grid>
-            </Grid>
           </Box>
         </Box>
       </Container>
     </ThemeProvider>
   );
 };
-
-export default Login;
+FormCategoria.propTypes = {
+  token: PropTypes.string.isRequired,
+};
+export default FormCategoria;

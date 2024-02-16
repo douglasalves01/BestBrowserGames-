@@ -1,13 +1,14 @@
 import Sidenav from "../components/Sidenav";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-
+import NavBar from "../components/NavBar";
 const Home = () => {
   return (
     <>
+      <NavBar />
       <Box sx={{ display: "flex" }}>
         <Sidenav />
-        <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+        <Box component="main" sx={{ flexGrow: 1, pt: 15, pl: 35, pr: 5 }}>
           <Typography paragraph>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Rhoncus

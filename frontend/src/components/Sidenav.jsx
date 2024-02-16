@@ -73,9 +73,7 @@ export default function Sidenav() {
   const [open, setOpen] = React.useState(true);
   const navigate = useNavigate();
   return (
-    <Box sx={{ display: "flex" }}>
-      <CssBaseline />
-
+    <Box sx={{ display: "flex" }} position="fixed">
       <Drawer variant="permanent" open={open}>
         <DrawerHeader>
           <IconButton onClick={() => setOpen(!open)}>
