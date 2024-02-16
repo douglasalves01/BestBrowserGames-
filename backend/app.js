@@ -4,6 +4,7 @@ import { run } from "./db/conn.js";
 import { userRouter } from "./routes/userRoutes.js";
 import { gamesRouter } from "./routes/gamesRoutes.js";
 import { avaliateRouter } from "./routes/avaliateRoutes.js";
+import { categoriaRouter } from "./routes/categoriaRouters.js";
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.use(express.json());
 app.use("/", userRouter);
 app.use("/", gamesRouter);
 app.use("/", avaliateRouter);
+app.use("/", categoriaRouter);
 run();
 
 app.listen(3000, (err) => {
