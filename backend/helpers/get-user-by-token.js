@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import { conn, client } from "../db/conn.js";
+import { client } from "../db/conn.js";
 
 export const getUserByToken = async (token) => {
   if (!token) {

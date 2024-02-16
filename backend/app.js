@@ -3,6 +3,7 @@ import cors from "cors";
 import { run } from "./db/conn.js";
 import { userRouter } from "./routes/userRoutes.js";
 import { gamesRouter } from "./routes/gamesRoutes.js";
+import { avaliateRouter } from "./routes/avaliateRoutes.js";
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.use(
 app.use(express.json());
 app.use("/", userRouter);
 app.use("/", gamesRouter);
+app.use("/", avaliateRouter);
 run();
 
 app.listen(3000, (err) => {
