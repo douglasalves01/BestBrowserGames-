@@ -1,6 +1,19 @@
 import { client } from "../db/conn.js";
 import { MongoClient, ObjectId } from "mongodb";
 export class GamesController {
+  static async getAllGames(req, res) {
+    try {
+      const data = await client
+        .db("best-browser-games")
+        .collection("games")
+        .find()
+        .toArray();
+      console.log(data);
+      res.status(200).json({ message: "Busca concluída", data: data.rows });
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  }
   static async createGames(req, res) {
     const { nome, categoria, urlAcesso, urlVideo, descricao, image } = req.body;
     if (!nome) {
