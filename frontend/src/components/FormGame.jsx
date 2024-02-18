@@ -25,7 +25,6 @@ const FormGame = ({ token }) => {
   const [error, setError] = useState("");
   const [menuItems, setMenuItems] = useState([]);
   const [sucess, setSucess] = useState("");
-  console.log(setSucess);
   axios
     .get("http://localhost:3000/categoria", {
       headers: {

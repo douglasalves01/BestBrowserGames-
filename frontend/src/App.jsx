@@ -25,7 +25,7 @@ function App() {
         <Route path="/" element={<Navigate to="/login" />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/home" element={<Home />} />
+        <Route path="/home" element={<Home token={token} />} />
         <Route path="/cadastro/game" element={<CadastroGame token={token} />} />
         <Route
           path="/cadastro/categoria"
