@@ -8,7 +8,6 @@ export class GamesController {
         .collection("games")
         .find()
         .toArray();
-      console.log(data);
       res.status(200).json({ message: "Busca concluída", data: data.rows });
     } catch (error) {
       res.status(500).json({ message: error.message });

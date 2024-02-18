@@ -4,6 +4,7 @@ import { CategoriaController } from "../controllers/categoriaController.js";
 
 export const categoriaRouter = express.Router();
 
+categoriaRouter.get("/categoria", checkToken, CategoriaController.getAll);
 categoriaRouter.post(
   "/categoria/create",
   checkToken,

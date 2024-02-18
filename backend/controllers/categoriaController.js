@@ -1,5 +1,18 @@
 import { client } from "../db/conn.js";
 export class CategoriaController {
+  static async getAll(req, res) {
+    try {
+      const data = await client
+        .db("best-browser-games")
+        .collection("categoria")
+        .find()
+        .toArray();
+
+      res.status(200).json({ message: "Busca concluída", data: data });
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  }
   static async create(req, res) {
     const { categoria } = req.body;
     if (!categoria) {
