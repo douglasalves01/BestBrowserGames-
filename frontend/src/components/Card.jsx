@@ -5,7 +5,8 @@ import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
-
+import PropTypes from "prop-types";
+import { jwtDecode } from "jwt-decode";
 export default function CardGame({
   id,
   image,
@@ -18,25 +19,33 @@ export default function CardGame({
   const handleOpenUrl = (url) => {
     window.open(url, "_blank");
   };
+  const token = localStorage.getItem("token");
+  const decodedToken = jwtDecode(token);
 
   return (
-    <Card sx={{ maxWidth: 250, maxHeight: 350 }}>
+    <Card sx={{ maxWidth: 300, minHeight: 200, maxHeight: 300 }}>
       <CardActionArea>
-        <CardMedia
-          component="img"
-          height="100"
-          image={image}
-          alt="green iguana"
-        />
+        <CardMedia component="img" height="100" image={image} alt={nome} />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
+          <Typography
+            sx={{ fontWeight: "bold", fontSize: 16 }}
+            gutterBottom
+            variant="body2"
+            component="div"
+          >
             {nome}
           </Typography>
-          <Typography variant="body2">{categoria}</Typography>
+          <Typography variant="body3">{categoria}</Typography>
           <Typography variant="body2" color="text.secondary">
             {descricao}
           </Typography>
-          <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              marginRight: -1,
+            }}
+          >
             <Button
               onClick={() => handleOpenUrl(urlAcesso)}
               sx={{ fontWeight: "bold" }}
@@ -49,9 +58,21 @@ export default function CardGame({
             >
               Assistir
             </Button>
+            {decodedToken.acesso === "1" && (
+              <Button sx={{ fontWeight: "bold" }}>Avaliar</Button>
+            )}
           </Box>
         </CardContent>
       </CardActionArea>
     </Card>
   );
 }
+CardGame.propTypes = {
+  id: PropTypes.string.isRequired,
+  nome: PropTypes.string.isRequired,
+  categoria: PropTypes.string.isRequired,
+  urlAcesso: PropTypes.string.isRequired,
+  urlVideo: PropTypes.string.isRequired,
+  descricao: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+};

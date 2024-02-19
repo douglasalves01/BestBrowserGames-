@@ -95,7 +95,12 @@ export class UserController {
         res.status(422).json({ message: "Senha inválida" });
         return;
       }
-      await createUserToken(registroExistente.email, req, res);
+      await createUserToken(
+        registroExistente.email,
+        registroExistente.acesso,
+        req,
+        res
+      );
     } catch (error) {
       res.status(422).json({ message: error.message });
     }

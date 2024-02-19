@@ -13,6 +13,8 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import axios from "axios";
+import { jwtDecode } from "jwt-decode";
+
 const defaultTheme = createTheme();
 
 const Login = () => {
@@ -29,7 +31,12 @@ const Login = () => {
         if (response.status === 200) {
           const token = response.data.token;
           localStorage.setItem("token", token);
-          navigate("/home");
+          const decodedToken = jwtDecode(token);
+          if (decodedToken.acesso === "1") {
+            navigate("/home");
+          } else {
+            navigate("/games");
+          }
         }
       })
       .catch((error) => {

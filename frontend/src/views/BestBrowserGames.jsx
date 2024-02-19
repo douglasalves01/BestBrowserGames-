@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 import { useState } from "react";
 import axios from "axios";
 
-const Home = ({ token }) => {
+const BestBrowserGames = ({ token }) => {
   const [gamesData, setGamesData] = useState([]);
 
   axios
@@ -35,16 +35,15 @@ const Home = ({ token }) => {
     <>
       <NavBar />
       <Box sx={{ display: "flex" }}>
-        <Sidenav />
         <Box
           component="main"
           sx={{
             flexGrow: 1,
-            pt: 15,
-            pl: 35,
+            pt: 10,
+            pl: 5,
             pr: 5,
             display: "grid",
-            gap: 1,
+            gap: 1.5,
             gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))",
           }}
         >
@@ -64,7 +63,7 @@ const Home = ({ token }) => {
     </>
   );
 };
-Home.propTypes = {
+BestBrowserGames.propTypes = {
   token: PropTypes.string.isRequired,
 };
-export default Home;
+export default BestBrowserGames;
