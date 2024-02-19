@@ -1,4 +1,3 @@
-import Sidenav from "../components/Sidenav";
 import Box from "@mui/material/Box";
 import NavBar from "../components/NavBar";
 import CardGame from "../components/Card";
@@ -30,7 +29,6 @@ const BestBrowserGames = ({ token }) => {
         setGamesData(games);
       }
     });
-
   return (
     <>
       <NavBar />
@@ -39,17 +37,18 @@ const BestBrowserGames = ({ token }) => {
           component="main"
           sx={{
             flexGrow: 1,
-            pt: 10,
-            pl: 5,
+            pt: 12,
+            pl: 8,
             pr: 5,
             display: "grid",
-            gap: 1.5,
+            gap: 2,
             gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))",
           }}
         >
           {gamesData.map((item) => (
             <CardGame
-              key={item._id}
+              key={item.id}
+              id={item.id}
               nome={item.nome}
               descricao={item.descricao}
               image={item.image}

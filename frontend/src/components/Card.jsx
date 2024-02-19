@@ -7,6 +7,8 @@ import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import PropTypes from "prop-types";
 import { jwtDecode } from "jwt-decode";
+import { useState } from "react";
+import ModalAvaliate from "./ModalAvaliate";
 export default function CardGame({
   id,
   image,
@@ -21,7 +23,9 @@ export default function CardGame({
   };
   const token = localStorage.getItem("token");
   const decodedToken = jwtDecode(token);
-
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   return (
     <Card sx={{ maxWidth: 300, minHeight: 200, maxHeight: 300 }}>
       <CardActionArea>
@@ -58,12 +62,21 @@ export default function CardGame({
             >
               Assistir
             </Button>
-            {decodedToken.acesso === "1" && (
-              <Button sx={{ fontWeight: "bold" }}>Avaliar</Button>
+            {decodedToken.acesso === "0" && (
+              <Button onClick={handleOpen} sx={{ fontWeight: "bold" }}>
+                Avaliar
+              </Button>
             )}
           </Box>
         </CardContent>
       </CardActionArea>
+      <ModalAvaliate
+        token={token}
+        id={id}
+        nome={nome}
+        open={open}
+        handleClose={handleClose}
+      />
     </Card>
   );
 }
