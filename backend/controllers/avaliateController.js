@@ -34,4 +34,22 @@ export class AvaliateController {
       res.status(500).json({ message: error.message });
     }
   }
+  static async getAvaliate(req, res) {
+    const idGame = req.params.id;
+    //pegar id do usuário
+    const token = getToken(req);
+    const user = await getUserByToken(token);
+    const idUser = user._id.toString();
+    try {
+      const data = await client
+        .db("best-browser-games")
+        .collection("avaliate")
+        .find({ idUser: idUser, idGame: idGame })
+        .toArray();
+      //console.log(data.data);
+      res.status(200).json({ message: "Busca concluída", data: data });
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  }
 }

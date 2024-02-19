@@ -4,6 +4,11 @@ import { checkToken } from "../helpers/check-token.js";
 
 export const avaliateRouter = express.Router();
 
+avaliateRouter.get(
+  "/games/avaliate/:id",
+  checkToken,
+  AvaliateController.getAvaliate
+);
 avaliateRouter.post(
   "/games/avaliate/:id",
   checkToken,

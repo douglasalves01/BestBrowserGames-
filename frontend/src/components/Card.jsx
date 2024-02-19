@@ -3,12 +3,14 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
+import Rating from "@mui/material/Rating";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import PropTypes from "prop-types";
 import { jwtDecode } from "jwt-decode";
 import { useState } from "react";
 import ModalAvaliate from "./ModalAvaliate";
+import axios from "axios";
 export default function CardGame({
   id,
   image,
@@ -24,11 +26,43 @@ export default function CardGame({
   const token = localStorage.getItem("token");
   const decodedToken = jwtDecode(token);
   const [open, setOpen] = useState(false);
+  const [avaliateData, setAvaliateData] = useState([]);
+  const [ratingValue, setRatingValue] = useState(0);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  axios
+    .get(`http://localhost:3000/games/avaliate/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((response) => {
+      if (response.status === 200) {
+        let responseData = response.data.data;
+        let avaliates = responseData.map((item) => ({
+          id: item._id,
+          avaliate: item.avaliate,
+          comentario: item.comentario,
+        }));
+        setAvaliateData(avaliates);
+        if (avaliates.length > 0) {
+          setRatingValue(avaliates[0].avaliate);
+        }
+      }
+    });
+  // {
+  //   avaliateData.map((item) => console.log(item.avaliate));
+  // }
   return (
     <Card sx={{ maxWidth: 300, minHeight: 200, maxHeight: 300 }}>
       <CardActionArea>
+        <Rating
+          name="avaliate"
+          value={ratingValue}
+          readOnly
+          sx={{ position: "absolute", right: 0 }}
+        />
         <CardMedia component="img" height="100" image={image} alt={nome} />
         <CardContent>
           <Typography
