@@ -10,3 +10,8 @@ categoriaRouter.post(
   checkToken,
   CategoriaController.create
 );
+categoriaRouter.delete(
+  "/categoria/delete/:id",
+  checkToken,
+  CategoriaController.delete
+);

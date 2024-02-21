@@ -30,4 +30,20 @@ export class CategoriaController {
       res.status(422).json({ message: error.message });
     }
   }
+  static async delete(req, res) {
+    const id = req.params.id;
+
+    try {
+      const result = await client
+        .db("best-browser-games")
+        .collection("categoria")
+        .deleteOne({ _id: new ObjectId(id) });
+
+      if (result) {
+        res.status(200).json({ message: "Categoria deletada com sucesso!" });
+      }
+    } catch (error) {
+      res.status(422).json({ message: error.message });
+    }
+  }
 }
