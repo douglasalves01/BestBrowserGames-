@@ -90,6 +90,11 @@ export class GamesController {
         .db("best-browser-games")
         .collection("games")
         .deleteOne({ _id: new ObjectId(id) });
+
+      const resultAvaliate = await client
+        .db("best-browser-games")
+        .collection("games")
+        .deleteMany({ idGame: id });
       if (result) {
         res.status(200).json({ message: "Game deletado com sucesso!" });
       }

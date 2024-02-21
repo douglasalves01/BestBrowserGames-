@@ -57,12 +57,14 @@ export default function CardGame({
   return (
     <Card sx={{ maxWidth: 300, minHeight: 200, maxHeight: 300 }}>
       <CardActionArea>
-        <Rating
-          name="avaliate"
-          value={ratingValue}
-          readOnly
-          sx={{ position: "absolute", right: 0 }}
-        />
+        {decodedToken.acesso === "0" && (
+          <Rating
+            name="avaliate"
+            value={ratingValue}
+            readOnly
+            sx={{ position: "absolute", right: 0 }}
+          />
+        )}
         <CardMedia component="img" height="100" image={image} alt={nome} />
         <CardContent>
           <Typography

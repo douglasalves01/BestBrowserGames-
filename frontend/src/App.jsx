@@ -11,6 +11,7 @@ import CadastroCategoria from "./views/CadastroCategoria";
 import CadastroGame from "./views/CadastroGame";
 import Home from "./views/Home";
 import BestBrowserGames from "./views/BestBrowserGames";
+import ContentTable from "./views/ContentTable";
 function App() {
   const [token, setToken] = useState("");
 
@@ -33,6 +34,10 @@ function App() {
           element={<CadastroCategoria token={token} />}
         />
         <Route path="/games" element={<BestBrowserGames token={token} />} />
+        <Route
+          path="/visualizar/games"
+          element={<ContentTable token={token} />}
+        />
       </Routes>
     </Router>
   );
