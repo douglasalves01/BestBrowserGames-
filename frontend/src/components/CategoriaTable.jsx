@@ -13,21 +13,17 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
 const columns = [
-  { id: "nome", label: "Name", minWidth: 170 },
-  { id: "descricao", label: "Description", minWidth: 170 },
   { id: "categoria", label: "Category", minWidth: 170 },
-  { id: "urlVideo", label: "Video URL", minWidth: 170 },
-  { id: "urlAcesso", label: "Access URL", minWidth: 170 },
   { id: "delete", label: "", minWidth: 50 },
 ];
 
-export default function GamesTable({ token }) {
+export default function CategoriaTable({ token }) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [gamesData, setGamesData] = useState([]);
 
   axios
-    .get("http://localhost:3000/games", {
+    .get("http://localhost:3000/categoria", {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -37,11 +33,6 @@ export default function GamesTable({ token }) {
         let responseData = response.data.data;
         let games = responseData.map((item) => ({
           id: item._id,
-          image: item.image,
-          nome: item.nome,
-          descricao: item.descricao,
-          urlVideo: item.urlVideo,
-          urlAcesso: item.urlAcesso,
           categoria: item.categoria,
         }));
         setGamesData(games);
@@ -57,7 +48,7 @@ export default function GamesTable({ token }) {
   };
   const handleDelete = (id) => {
     axios
-      .delete(`http://localhost:3000/games/delete/${id}`, {
+      .delete(`http://localhost:3000/categoria/delete/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -128,6 +119,6 @@ export default function GamesTable({ token }) {
     </Paper>
   );
 }
-GamesTable.propTypes = {
+CategoriaTable.propTypes = {
   token: PropTypes.string.isRequired,
 };

@@ -1,9 +1,9 @@
-import GamesTable from "../components/GamesTable";
+import CategoriaTable from "../components/CategoriaTable";
 import NavBar from "../components/NavBar";
 import Sidenav from "../components/Sidenav";
 import Box from "@mui/material/Box";
 import PropTypes from "prop-types";
-const ContentTable = ({ token }) => {
+const ContentCategoria = ({ token }) => {
   return (
     <>
       <NavBar />
@@ -19,13 +19,13 @@ const ContentTable = ({ token }) => {
             display: "flex",
           }}
         >
-          <GamesTable token={token} />
+          <CategoriaTable token={token} />
         </Box>
       </Box>
     </>
   );
 };
-export default ContentTable;
-ContentTable.propTypes = {
+export default ContentCategoria;
+ContentCategoria.propTypes = {
   token: PropTypes.string.isRequired,
 };
