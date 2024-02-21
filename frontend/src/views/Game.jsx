@@ -1,11 +1,11 @@
 import Box from "@mui/material/Box";
 import NavBar from "../components/NavBar";
-import CardGame from "../components/Card";
 import PropTypes from "prop-types";
 import { useState } from "react";
 import axios from "axios";
+import ContentAvaliates from "../components/ContentAvaliates";
 
-const BestBrowserGames = ({ token }) => {
+const Games = ({ token }) => {
   const [gamesData, setGamesData] = useState([]);
 
   axios
@@ -32,37 +32,35 @@ const BestBrowserGames = ({ token }) => {
   return (
     <>
       <NavBar />
-      <Box sx={{ display: "flex" }}>
-        <Box
-          component="main"
-          sx={{
-            flexGrow: 1,
-            pt: 12,
-            pl: 8,
-            pr: 5,
-            display: "grid",
-            gap: 2,
-            gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))",
-          }}
-        >
-          {gamesData.map((item) => (
-            <CardGame
-              key={item.id}
-              id={item.id}
-              nome={item.nome}
-              descricao={item.descricao}
-              image={item.image}
-              categoria={item.categoria}
-              urlVideo={item.urlVideo}
-              urlAcesso={item.urlAcesso}
-            />
-          ))}
-        </Box>
+      {gamesData.map((item) => (
+        <div key={item.id}>
+          <img
+            src={item.image}
+            alt={item.nome}
+            style={{ maxWidth: "100%", height: "auto" }}
+          />
+        </div>
+      ))}
+      <Box
+        sx={{
+          backgroundImage: "url('caminho/para/sua/imagem.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          height: "100%",
+          display: "flex",
+          alignItems: "start",
+          justifyContent: "start",
+          pt: 10,
+        }}
+      >
+        {gamesData.map((item) => (
+          <ContentAvaliates token={token} key={item.id} id={item.id} />
+        ))}
       </Box>
     </>
   );
 };
-BestBrowserGames.propTypes = {
+Games.propTypes = {
   token: PropTypes.string.isRequired,
 };
-export default BestBrowserGames;
+export default Games;

@@ -93,7 +93,7 @@ export class GamesController {
 
       const resultAvaliate = await client
         .db("best-browser-games")
-        .collection("games")
+        .collection("avaliate")
         .deleteMany({ idGame: id });
       if (result) {
         res.status(200).json({ message: "Game deletado com sucesso!" });

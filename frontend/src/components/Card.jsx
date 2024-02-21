@@ -2,6 +2,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
+import { Link } from "react-router-dom";
 import { CardActionArea } from "@mui/material";
 import Rating from "@mui/material/Rating";
 import Button from "@mui/material/Button";
@@ -67,18 +68,20 @@ export default function CardGame({
         )}
         <CardMedia component="img" height="100" image={image} alt={nome} />
         <CardContent>
-          <Typography
-            sx={{ fontWeight: "bold", fontSize: 16 }}
-            gutterBottom
-            variant="body2"
-            component="div"
-          >
-            {nome}
-          </Typography>
-          <Typography variant="body3">{categoria}</Typography>
-          <Typography variant="body2" color="text.secondary">
-            {descricao}
-          </Typography>
+          <Link to={`/games/${id}`} key={id} style={{ textDecoration: "none" }}>
+            <Typography
+              sx={{ fontWeight: "bold", fontSize: 16 }}
+              gutterBottom
+              variant="body2"
+              component="div"
+            >
+              {nome}
+            </Typography>
+            <Typography variant="body3">{categoria}</Typography>
+            <Typography variant="body2" color="text.secondary">
+              {descricao}
+            </Typography>
+          </Link>
           <Box
             sx={{
               display: "flex",

@@ -9,6 +9,11 @@ avaliateRouter.get(
   checkToken,
   AvaliateController.getAvaliate
 );
+avaliateRouter.get(
+  "/games/avaliates/:id",
+  checkToken,
+  AvaliateController.getAll
+);
 avaliateRouter.post(
   "/games/avaliate/:id",
   checkToken,

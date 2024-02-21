@@ -24,10 +24,11 @@ export class AvaliateController {
       idUser,
     };
     try {
-      await client
-        .db("best-browser-games")
-        .collection("avaliate")
-        .insertOne(newAvaliate);
+      await client.db("best-browser-games").collection("avaliate").updateOne(
+        { idGame, idUser }, // Filtro para encontrar a avaliação existente
+        { $set: newAvaliate }, // Documento a ser atualizado ou inserido
+        { upsert: true } // Opção para inserir se não existir (upsert)
+      );
 
       res.status(200).json({ message: "Avaliação feita com sucesso!" });
     } catch (error) {
@@ -45,6 +46,24 @@ export class AvaliateController {
         .db("best-browser-games")
         .collection("avaliate")
         .find({ idUser: idUser, idGame: idGame })
+        .toArray();
+      //console.log(data.data);
+      res.status(200).json({ message: "Busca concluída", data: data });
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  }
+  static async getAll(req, res) {
+    const idGame = req.params.id;
+    //pegar id do usuário
+    const token = getToken(req);
+    const user = await getUserByToken(token);
+    const idUser = user._id.toString();
+    try {
+      const data = await client
+        .db("best-browser-games")
+        .collection("avaliate")
+        .find({ idGame: idGame })
         .toArray();
       //console.log(data.data);
       res.status(200).json({ message: "Busca concluída", data: data });
