@@ -68,7 +68,15 @@ export default function CardGame({
         )}
         <CardMedia component="img" height="100" image={image} alt={nome} />
         <CardContent>
-          <Link to={`/games/${id}`} key={id} style={{ textDecoration: "none" }}>
+          <Link
+            to={`/games/${id}`}
+            key={id}
+            style={{
+              textDecoration: "none",
+              underline: "none",
+              color: "inherit",
+            }}
+          >
             <Typography
               sx={{ fontWeight: "bold", fontSize: 16 }}
               gutterBottom

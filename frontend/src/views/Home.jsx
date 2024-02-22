@@ -51,6 +51,7 @@ const Home = ({ token }) => {
           {gamesData.map((item) => (
             <CardGame
               key={item._id}
+              id={item.id}
               nome={item.nome}
               descricao={item.descricao}
               image={item.image}

@@ -13,6 +13,19 @@ export class GamesController {
       res.status(500).json({ message: error.message });
     }
   }
+  static async getGame(req, res) {
+    const idGame = req.params;
+    try {
+      const data = await client
+        .db("best-browser-games")
+        .collection("games")
+        .findOne({ _id: new ObjectId(idGame) });
+
+      res.status(200).json({ message: "Busca concluída", data: data });
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  }
   static async createGames(req, res) {
     const { nome, categoria, urlAcesso, urlVideo, descricao, image } = req.body;
     if (!nome) {

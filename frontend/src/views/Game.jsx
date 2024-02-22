@@ -4,12 +4,13 @@ import PropTypes from "prop-types";
 import { useState } from "react";
 import axios from "axios";
 import ContentAvaliates from "../components/ContentAvaliates";
+import { useParams } from "react-router-dom";
 
 const Games = ({ token }) => {
   const [gamesData, setGamesData] = useState([]);
-
+  const { id } = useParams();
   axios
-    .get("http://localhost:3000/games", {
+    .get(`http://localhost:3000/games/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -17,30 +18,29 @@ const Games = ({ token }) => {
     .then((response) => {
       if (response.status === 200) {
         let responseData = response.data.data;
-        let games = responseData.map((item) => ({
-          id: item._id,
-          image: item.image,
-          nome: item.nome,
-          descricao: item.descricao,
-          urlVideo: item.urlVideo,
-          urlAcesso: item.urlAcesso,
-          categoria: item.categoria,
-        }));
-        setGamesData(games);
+        const game = {
+          id: responseData._id,
+          image: responseData.image,
+          nome: responseData.nome,
+          descricao: responseData.descricao,
+          urlVideo: responseData.urlVideo,
+          urlAcesso: responseData.urlAcesso,
+          categoria: responseData.categoria,
+        };
+        setGamesData(game);
       }
     });
   return (
     <>
       <NavBar />
-      {gamesData.map((item) => (
-        <div key={item.id}>
-          <img
-            src={item.image}
-            alt={item.nome}
-            style={{ maxWidth: "100%", height: "auto" }}
-          />
-        </div>
-      ))}
+
+      <div key={gamesData.id}>
+        <img
+          src={gamesData.image}
+          alt={gamesData.nome}
+          style={{ maxWidth: "100%", minWidth: "100%", height: "100%" }}
+        />
+      </div>
       <Box
         sx={{
           backgroundImage: "url('caminho/para/sua/imagem.jpg')",
@@ -53,9 +53,7 @@ const Games = ({ token }) => {
           pt: 10,
         }}
       >
-        {gamesData.map((item) => (
-          <ContentAvaliates token={token} key={item.id} id={item.id} />
-        ))}
+        <ContentAvaliates token={token} key={gamesData.id} id={gamesData.id} />
       </Box>
     </>
   );

@@ -13,7 +13,7 @@ import Home from "./views/Home";
 import BestBrowserGames from "./views/BestBrowserGames";
 import ContentTable from "./views/ContentTable";
 import ContentCategoria from "./views/ContentCategoria";
-import Games from "./views/Game";
+import Game from "./views/Game";
 function App() {
   const [token, setToken] = useState("");
 
@@ -44,7 +44,7 @@ function App() {
           path="/visualizar/categorias"
           element={<ContentCategoria token={token} />}
         />
-        <Route path="/games/:id" element={<Games token={token} />} />
+        <Route path="/games/:id" element={<Game token={token} />} />
       </Routes>
     </Router>
   );
