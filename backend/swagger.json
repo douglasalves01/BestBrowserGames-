@@ -1,0 +1,437 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API de controle de games e avaliações",
+    "description": "Essa API tem como objetico o controle de games e avaliações",
+    "termsOfService": "http://localhost:3000/terms",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/",
+      "description": "API de produção"
+    },
+    {
+      "url": "http://teste.com",
+      "description": "API de produção"
+    }
+  ],
+  "paths": {
+    "/user/register": {
+      "post": {
+        "summary": "Cadastro de usuário",
+        "description": "Essa rota será responsável por cadastrar um novo usuário",
+        "tags": ["Users"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Register"
+              }
+            }
+          }
+        },
+        "responses": {
+          "422": {
+            "description": "Algum campo está faltando"
+          },
+          "400": {
+            "description": "Já existe um registro desse email na base de dados"
+          },
+          "201": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Register"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/login": {
+      "post": {
+        "summary": "Login de usuário",
+        "description": "Essa rota será responsável por logar um usuário",
+        "tags": ["Users"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Login"
+              }
+            }
+          }
+        },
+        "responses": {
+          "422": {
+            "description": "Algum campo está faltando"
+          },
+          "400": {
+            "description": "Email inválido"
+          },
+          "401": {
+            "description": "Senha inválida"
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Login"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/categoria": {
+      "get": {
+        "summary": "Retorno de categorias",
+        "description": "Essa rota será responsável por retornar as categorias",
+        "tags": ["Categorias"],
+        "security": [{ "bearerAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/categoria/create": {
+      "post": {
+        "summary": "Cadastro de categoria",
+        "description": "Essa rota será responsável por cadastrar uma nova categoria",
+        "tags": ["Categorias"],
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Categoria"
+              }
+            }
+          }
+        },
+        "responses": {
+          "422": {
+            "description": "Algum campo está faltando"
+          },
+          "201": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Categoria"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/categoria/delete/:id": {
+      "delete": {
+        "summary": "Exclusão de categoria",
+        "description": "Essa rota será responsável por excluir uma categoria",
+        "tags": ["Categorias"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID da categoria a ser excluída",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/games": {
+      "get": {
+        "summary": "Retorno de games",
+        "description": "Essa rota será responsável retornar todos os games do banco",
+        "tags": ["Games"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID do game a ser retornado",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/games/:id": {
+      "get": {
+        "summary": "Retorno de game",
+        "description": "Essa rota será responsável retornar um game de acordo com o ID fornecido",
+        "tags": ["Games"],
+        "security": [{ "bearerAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/games/create": {
+      "post": {
+        "summary": "Cadastro de game",
+        "description": "Essa rota será responsável por cadastrar um novo game",
+        "tags": ["Games"],
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Games"
+              }
+            }
+          }
+        },
+        "responses": {
+          "422": {
+            "description": "Algum campo está faltando"
+          },
+          "201": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Games"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/games/delete": {
+      "delete": {
+        "summary": "Exclusao de game",
+        "description": "Essa rota será responsável por excluir um game",
+        "tags": ["Games"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID do game a ser excluído",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/games/avaliate/:id": {
+      "post": {
+        "summary": "Cadastro de avaliação",
+        "description": "Essa rota será responsável por registrar uma nova avaliação de game",
+        "tags": ["Avaliates"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID do game a ser avaliado",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Avaliate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "422": {
+            "description": "Algum campo está faltando"
+          },
+          "201": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Avaliate"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Retorno de categoria",
+        "description": "Essa rota será responsável por retornar uma categoria de acordo com o id do usário e do id do game",
+        "tags": ["Avaliates"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID do game a ser usado no filtro",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/games/avaliates/:id": {
+      "get": {
+        "summary": "Retorno de categoria por ID de usuário e game",
+        "description": "Essa rota será responsável por retornar uma categoria de acordo com o ID do usário e do ID do game",
+        "tags": ["Avaliates"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID do game a ser usado no filtro",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Register": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string"
+          },
+          "birthDate": {
+            "type": "string",
+            "format": "date",
+            "example": "31-12-2000"
+          }
+        }
+      },
+      "Login": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        }
+      },
+      "Categoria": {
+        "type": "object",
+        "properties": {
+          "categoria": {
+            "type": "string"
+          }
+        }
+      },
+      "Games": {
+        "type": "object",
+        "properties": {
+          "nome": {
+            "type": "string"
+          },
+          "categoria": {
+            "type": "string"
+          },
+          "UrlAcesso": {
+            "type": "string"
+          },
+          "UrlVideo": {
+            "type": "string"
+          },
+          "descricao": {
+            "type": "string"
+          },
+          "image": {
+            "type": "string"
+          }
+        }
+      },
+      "Avaliate": {
+        "type": "object",
+        "properties": {
+          "avaliate": {
+            "type": "string"
+          },
+          "comentario": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}
