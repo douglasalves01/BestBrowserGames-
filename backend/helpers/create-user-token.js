@@ -1,4 +1,4 @@
-import jwt from "jsonwebtoken";
+import jwt from 'jsonwebtoken';
 
 export const createUserToken = async (email, acesso, req, res) => {
   const token = jwt.sign(
@@ -6,10 +6,10 @@ export const createUserToken = async (email, acesso, req, res) => {
       email: email,
       acesso: acesso,
     },
-    "nossosecret"
+    'nossosecret'
   );
   res.status(200).json({
-    message: "Você está autenticado",
+    message: 'Você está autenticado',
     token: token,
     email: email,
     acesso: acesso,

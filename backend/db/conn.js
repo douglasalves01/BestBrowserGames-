@@ -1,5 +1,5 @@
-import { MongoClient, ServerApiVersion } from "mongodb";
-import dotenv from "dotenv";
+import { MongoClient, ServerApiVersion } from 'mongodb';
+import dotenv from 'dotenv';
 dotenv.config();
 const uri = process.env.URL_MONGODB;
 
@@ -14,9 +14,9 @@ export const client = new MongoClient(uri, {
 export async function run() {
   try {
     await client.connect();
-    await client.db("admin").command({ ping: 1 });
+    await client.db('admin').command({ ping: 1 });
 
-    console.log("Conectado ao MongoDB Atlas");
+    console.log('Conectado ao MongoDB Atlas');
   } catch (error) {
     console.log(error);
   }
