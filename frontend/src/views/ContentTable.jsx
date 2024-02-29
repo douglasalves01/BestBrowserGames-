@@ -1,13 +1,13 @@
-import GamesTable from "../components/GamesTable";
-import NavBar from "../components/NavBar";
-import Sidenav from "../components/Sidenav";
-import Box from "@mui/material/Box";
-import PropTypes from "prop-types";
+import GamesTable from '../components/GamesTable';
+import NavBar from '../components/NavBar';
+import Sidenav from '../components/Sidenav';
+import Box from '@mui/material/Box';
+import PropTypes from 'prop-types';
 const ContentTable = ({ token }) => {
   return (
     <>
       <NavBar />
-      <Box sx={{ display: "flex" }}>
+      <Box sx={{ display: 'flex' }}>
         <Sidenav />
         <Box
           component="main"
@@ -16,7 +16,7 @@ const ContentTable = ({ token }) => {
             pt: 15,
             pl: 35,
             pr: 5,
-            display: "flex",
+            display: 'flex',
           }}
         >
           <GamesTable token={token} />

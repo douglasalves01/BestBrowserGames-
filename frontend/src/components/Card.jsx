@@ -1,17 +1,17 @@
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Typography from "@mui/material/Typography";
-import { Link } from "react-router-dom";
-import { CardActionArea } from "@mui/material";
-import Rating from "@mui/material/Rating";
-import Button from "@mui/material/Button";
-import Box from "@mui/material/Box";
-import PropTypes from "prop-types";
-import { jwtDecode } from "jwt-decode";
-import { useState } from "react";
-import ModalAvaliate from "./ModalAvaliate";
-import axios from "axios";
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
+import { Link } from 'react-router-dom';
+import { CardActionArea } from '@mui/material';
+import Rating from '@mui/material/Rating';
+import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
+import PropTypes from 'prop-types';
+import { jwtDecode } from 'jwt-decode';
+import { useState } from 'react';
+import ModalAvaliate from './ModalAvaliate';
+import axios from 'axios';
 export default function CardGame({
   id,
   image,
@@ -22,9 +22,9 @@ export default function CardGame({
   categoria,
 }) {
   const handleOpenUrl = (url) => {
-    window.open(url, "_blank");
+    window.open(url, '_blank');
   };
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem('token');
   const decodedToken = jwtDecode(token);
   const [open, setOpen] = useState(false);
   const [avaliateData, setAvaliateData] = useState([]);
@@ -58,12 +58,12 @@ export default function CardGame({
   return (
     <Card sx={{ maxWidth: 300, minHeight: 200, maxHeight: 300 }}>
       <CardActionArea>
-        {decodedToken.acesso === "0" && (
+        {decodedToken.acesso === '0' && (
           <Rating
             name="avaliate"
             value={ratingValue}
             readOnly
-            sx={{ position: "absolute", right: 0 }}
+            sx={{ position: 'absolute', right: 0 }}
           />
         )}
         <CardMedia component="img" height="100" image={image} alt={nome} />
@@ -72,13 +72,13 @@ export default function CardGame({
             to={`/games/${id}`}
             key={id}
             style={{
-              textDecoration: "none",
-              underline: "none",
-              color: "inherit",
+              textDecoration: 'none',
+              underline: 'none',
+              color: 'inherit',
             }}
           >
             <Typography
-              sx={{ fontWeight: "bold", fontSize: 16 }}
+              sx={{ fontWeight: 'bold', fontSize: 16 }}
               gutterBottom
               variant="body2"
               component="div"
@@ -92,25 +92,25 @@ export default function CardGame({
           </Link>
           <Box
             sx={{
-              display: "flex",
-              justifyContent: "space-between",
+              display: 'flex',
+              justifyContent: 'space-between',
               marginRight: -1,
             }}
           >
             <Button
               onClick={() => handleOpenUrl(urlAcesso)}
-              sx={{ fontWeight: "bold" }}
+              sx={{ fontWeight: 'bold' }}
             >
               Acessar
             </Button>
             <Button
               onClick={() => handleOpenUrl(urlVideo)}
-              sx={{ fontWeight: "bold" }}
+              sx={{ fontWeight: 'bold' }}
             >
               Assistir
             </Button>
-            {decodedToken.acesso === "0" && (
-              <Button onClick={handleOpen} sx={{ fontWeight: "bold" }}>
+            {decodedToken.acesso === '0' && (
+              <Button onClick={handleOpen} sx={{ fontWeight: 'bold' }}>
                 Avaliar
               </Button>
             )}

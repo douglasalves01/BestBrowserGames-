@@ -1,16 +1,16 @@
-import Sidenav from "../components/Sidenav";
-import Box from "@mui/material/Box";
-import NavBar from "../components/NavBar";
-import CardGame from "../components/Card";
-import PropTypes from "prop-types";
-import { useState } from "react";
-import axios from "axios";
+import Sidenav from '../components/Sidenav';
+import Box from '@mui/material/Box';
+import NavBar from '../components/NavBar';
+import CardGame from '../components/Card';
+import PropTypes from 'prop-types';
+import { useState } from 'react';
+import axios from 'axios';
 
 const Home = ({ token }) => {
   const [gamesData, setGamesData] = useState([]);
 
   axios
-    .get("http://localhost:3000/games", {
+    .get('http://localhost:3000/games', {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -34,7 +34,7 @@ const Home = ({ token }) => {
   return (
     <>
       <NavBar />
-      <Box sx={{ display: "flex" }}>
+      <Box sx={{ display: 'flex' }}>
         <Sidenav />
         <Box
           component="main"
@@ -43,9 +43,9 @@ const Home = ({ token }) => {
             pt: 15,
             pl: 35,
             pr: 5,
-            display: "grid",
+            display: 'grid',
             gap: 1,
-            gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))",
+            gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
           }}
         >
           {gamesData.map((item) => (

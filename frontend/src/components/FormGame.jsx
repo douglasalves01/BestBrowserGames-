@@ -1,32 +1,32 @@
-import Alert from "@mui/material/Alert";
-import PropTypes from "prop-types";
-import { useState } from "react";
-import Button from "@mui/material/Button";
-import CssBaseline from "@mui/material/CssBaseline";
-import TextField from "@mui/material/TextField";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
-import axios from "axios";
+import Alert from '@mui/material/Alert';
+import PropTypes from 'prop-types';
+import { useState } from 'react';
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import axios from 'axios';
 const defaultTheme = createTheme();
 
 const FormGame = ({ token }) => {
-  const [nome, setNome] = useState("");
-  const [categoria, setCategoria] = useState("");
-  const [urlAcesso, setUrlAcesso] = useState("");
-  const [urlVideo, setUrlVideo] = useState("");
-  const [descricao, setDescricao] = useState("");
-  const [image, setImage] = useState("");
-  const [error, setError] = useState("");
+  const [nome, setNome] = useState('');
+  const [categoria, setCategoria] = useState('');
+  const [urlAcesso, setUrlAcesso] = useState('');
+  const [urlVideo, setUrlVideo] = useState('');
+  const [descricao, setDescricao] = useState('');
+  const [image, setImage] = useState('');
+  const [error, setError] = useState('');
   const [menuItems, setMenuItems] = useState([]);
-  const [sucess, setSucess] = useState("");
+  const [sucess, setSucess] = useState('');
   axios
-    .get("http://localhost:3000/categoria", {
+    .get('http://localhost:3000/categoria', {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -45,7 +45,7 @@ const FormGame = ({ token }) => {
     event.preventDefault();
     axios
       .post(
-        "http://localhost:3000/games/create",
+        'http://localhost:3000/games/create',
         { nome, categoria, urlAcesso, urlVideo, descricao, image },
         {
           headers: {
@@ -55,12 +55,12 @@ const FormGame = ({ token }) => {
       )
       .then((response) => {
         if (response.status === 201) {
-          setNome("");
-          setCategoria("");
-          setUrlAcesso("");
-          setUrlVideo("");
-          setDescricao("");
-          setImage("");
+          setNome('');
+          setCategoria('');
+          setUrlAcesso('');
+          setUrlVideo('');
+          setDescricao('');
+          setImage('');
           setSucess(response.data.message);
         }
       })
@@ -76,9 +76,9 @@ const FormGame = ({ token }) => {
         <Box
           sx={{
             marginTop: 8,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
           }}
         >
           <Typography component="h1" variant="h5">
@@ -90,10 +90,10 @@ const FormGame = ({ token }) => {
             noValidate
             sx={{
               mt: 1,
-              width: "550px",
-              display: "grid",
-              gridTemplateColumns: "1fr 1fr",
-              gap: "10px",
+              width: '550px',
+              display: 'grid',
+              gridTemplateColumns: '1fr 1fr',
+              gap: '10px',
             }}
           >
             <TextField
@@ -177,8 +177,8 @@ const FormGame = ({ token }) => {
           {sucess && (
             <Alert
               severity="success"
-              sx={{ width: "550px" }}
-              onClose={() => setSucess("")}
+              sx={{ width: '550px' }}
+              onClose={() => setSucess('')}
             >
               {sucess}
             </Alert>
@@ -186,8 +186,8 @@ const FormGame = ({ token }) => {
           {error && (
             <Alert
               severity="warning"
-              sx={{ width: "550px" }}
-              onClose={() => setError("")}
+              sx={{ width: '550px' }}
+              onClose={() => setError('')}
             >
               {error}
             </Alert>
@@ -197,7 +197,7 @@ const FormGame = ({ token }) => {
             type="submit"
             fullWidth
             variant="contained"
-            sx={{ mt: 3, mb: 2, width: "550px" }}
+            sx={{ mt: 3, mb: 2, width: '550px' }}
           >
             Cadastrar
           </Button>

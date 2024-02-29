@@ -1,7 +1,7 @@
-import axios from "axios";
-import { useState } from "react";
-import Rating from "@mui/material/Rating";
-import Box from "@mui/material/Box";
+import axios from 'axios';
+import { useState } from 'react';
+import Rating from '@mui/material/Rating';
+import Box from '@mui/material/Box';
 const ContentAvaliates = ({ token, id }) => {
   const [avaliateData, setAvaliateData] = useState([]);
   const [avaliateDataRating, setAvaliateDataRating] = useState([]);
@@ -30,27 +30,27 @@ const ContentAvaliates = ({ token, id }) => {
   return (
     <Box
       sx={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
         padding: 2,
-        border: "1px solid #ccc",
+        border: '1px solid #ccc',
         borderRadius: 4,
         width: 800,
-        margin: "0 auto",
+        margin: '0 auto',
       }}
     >
       {avaliateData.map((item) => (
         <Box
           key={item.id}
           sx={{
-            backgroundColor: "#f9f9f9",
+            backgroundColor: '#f9f9f9',
             padding: 2,
             marginBottom: 2,
             borderRadius: 4,
-            width: "100%",
-            textAlign: "center",
+            width: '100%',
+            textAlign: 'center',
           }}
         >
           <div>{item.comentario}</div>

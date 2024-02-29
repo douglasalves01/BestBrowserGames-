@@ -1,40 +1,40 @@
-import Avatar from "@mui/material/Avatar";
-import { useState } from "react";
-import Alert from "@mui/material/Alert";
-import { useNavigate } from "react-router-dom";
-import Button from "@mui/material/Button";
-import CssBaseline from "@mui/material/CssBaseline";
-import TextField from "@mui/material/TextField";
-import Link from "@mui/material/Link";
-import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import Avatar from '@mui/material/Avatar';
+import { useState } from 'react';
+import Alert from '@mui/material/Alert';
+import { useNavigate } from 'react-router-dom';
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
+import Link from '@mui/material/Link';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
-import axios from "axios";
+import axios from 'axios';
 
 const defaultTheme = createTheme();
 
 const Register = () => {
-  const [name, setName] = useState("");
-  const [country, setCountry] = useState("");
-  const [state, setState] = useState("");
-  const [birthDate, setBirthDate] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [name, setName] = useState('');
+  const [country, setCountry] = useState('');
+  const [state, setState] = useState('');
+  const [birthDate, setBirthDate] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
   function handleSubmit(event) {
     event.preventDefault();
     axios
-      .post("http://localhost:3000/user/register", {
+      .post('http://localhost:3000/user/register', {
         name,
         country,
         state,
@@ -44,7 +44,7 @@ const Register = () => {
       })
       .then((response) => {
         if (response.status === 201) {
-          navigate("/login");
+          navigate('/login');
         }
       })
       .catch((error) => {
@@ -59,12 +59,12 @@ const Register = () => {
         <Box
           sx={{
             marginTop: 8,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
@@ -77,10 +77,10 @@ const Register = () => {
             sx={{ mt: 1 }}
           >
             <Grid container spacing={2}>
-              {" "}
+              {' '}
               {/* Container de grade com espaçamento entre os itens */}
               <Grid item xs={12} sm={6}>
-                {" "}
+                {' '}
                 {/* Define o item de grade para ocupar 12 colunas em dispositivos pequenos e 6 colunas em dispositivos médios e maiores */}
                 <TextField
                   margin="normal"
@@ -96,7 +96,7 @@ const Register = () => {
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
-                {" "}
+                {' '}
                 {/* Define o item de grade para ocupar 12 colunas em dispositivos pequenos e 6 colunas em dispositivos médios e maiores */}
                 <TextField
                   margin="normal"
@@ -112,7 +112,7 @@ const Register = () => {
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
-                {" "}
+                {' '}
                 {/* Define o item de grade para ocupar 12 colunas em dispositivos pequenos e 6 colunas em dispositivos médios e maiores */}
                 <TextField
                   margin="normal"
@@ -129,7 +129,7 @@ const Register = () => {
               </Grid>
               <Grid item xs={12} sm={6} mt={1}>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
-                  <DemoContainer components={["DatePicker"]}>
+                  <DemoContainer components={['DatePicker']}>
                     <DatePicker
                       label="Data de Nascimento"
                       value={birthDate}
@@ -137,10 +137,10 @@ const Register = () => {
                       renderInput={(params) => <TextField {...params} />}
                     />
                   </DemoContainer>
-                </LocalizationProvider>{" "}
+                </LocalizationProvider>{' '}
               </Grid>
               <Grid item xs={12} sm={6}>
-                {" "}
+                {' '}
                 {/* Define o item de grade para ocupar 12 colunas em dispositivos pequenos e 6 colunas em dispositivos médios e maiores */}
                 <TextField
                   margin="normal"
@@ -156,7 +156,7 @@ const Register = () => {
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
-                {" "}
+                {' '}
                 {/* Define o item de grade para ocupar 12 colunas em dispositivos pequenos e 6 colunas em dispositivos médios e maiores */}
                 <TextField
                   margin="normal"
@@ -174,7 +174,7 @@ const Register = () => {
             </Grid>
 
             {error && (
-              <Alert severity="warning" onClose={() => setError("")}>
+              <Alert severity="warning" onClose={() => setError('')}>
                 {error}
               </Alert>
             )}
@@ -189,7 +189,7 @@ const Register = () => {
             <Grid container justifyContent="flex-start">
               <Grid item>
                 <Link href="/login" variant="body2">
-                  {"Já tem uma conta? Faça o login"}
+                  {'Já tem uma conta? Faça o login'}
                 </Link>
               </Grid>
             </Grid>

@@ -1,41 +1,41 @@
-import Avatar from "@mui/material/Avatar";
-import Alert from "@mui/material/Alert";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import Button from "@mui/material/Button";
-import CssBaseline from "@mui/material/CssBaseline";
-import TextField from "@mui/material/TextField";
-import Link from "@mui/material/Link";
-import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import axios from "axios";
-import { jwtDecode } from "jwt-decode";
+import Avatar from '@mui/material/Avatar';
+import Alert from '@mui/material/Alert';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
+import Link from '@mui/material/Link';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import axios from 'axios';
+import { jwtDecode } from 'jwt-decode';
 
 const defaultTheme = createTheme();
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
   function handleSubmit(event) {
     event.preventDefault();
     axios
-      .post("http://localhost:3000/user/login", { email, password })
+      .post('http://localhost:3000/user/login', { email, password })
       .then((response) => {
         if (response.status === 200) {
           const token = response.data.token;
-          localStorage.setItem("token", token);
+          localStorage.setItem('token', token);
           const decodedToken = jwtDecode(token);
-          if (decodedToken.acesso === "1") {
-            navigate("/home");
+          if (decodedToken.acesso === '1') {
+            navigate('/home');
           } else {
-            navigate("/games");
+            navigate('/games');
           }
         }
       })
@@ -51,12 +51,12 @@ const Login = () => {
         <Box
           sx={{
             marginTop: 8,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
@@ -93,7 +93,7 @@ const Login = () => {
               autoComplete="current-password"
             />
             {error && (
-              <Alert severity="warning" onClose={() => setError("")}>
+              <Alert severity="warning" onClose={() => setError('')}>
                 {error}
               </Alert>
             )}
@@ -108,7 +108,7 @@ const Login = () => {
             <Grid container>
               <Grid item>
                 <Link href="/register" variant="body2">
-                  {"Não tem uma conta ainda? Registre-se"}
+                  {'Não tem uma conta ainda? Registre-se'}
                 </Link>
               </Grid>
             </Grid>

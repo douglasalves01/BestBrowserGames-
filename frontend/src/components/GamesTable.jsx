@@ -1,24 +1,24 @@
-import * as React from "react";
-import Paper from "@mui/material/Paper";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TablePagination from "@mui/material/TablePagination";
-import TableRow from "@mui/material/TableRow";
-import IconButton from "@mui/material/IconButton";
-import DeleteIcon from "@mui/icons-material/Delete";
-import { useState } from "react";
-import PropTypes from "prop-types";
-import axios from "axios";
+import * as React from 'react';
+import Paper from '@mui/material/Paper';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TablePagination from '@mui/material/TablePagination';
+import TableRow from '@mui/material/TableRow';
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
+import { useState } from 'react';
+import PropTypes from 'prop-types';
+import axios from 'axios';
 const columns = [
-  { id: "nome", label: "Name", minWidth: 170 },
-  { id: "descricao", label: "Description", minWidth: 170 },
-  { id: "categoria", label: "Category", minWidth: 170 },
-  { id: "urlVideo", label: "Video URL", minWidth: 170 },
-  { id: "urlAcesso", label: "Access URL", minWidth: 170 },
-  { id: "delete", label: "", minWidth: 50 },
+  { id: 'nome', label: 'Name', minWidth: 170 },
+  { id: 'descricao', label: 'Description', minWidth: 170 },
+  { id: 'categoria', label: 'Category', minWidth: 170 },
+  { id: 'urlVideo', label: 'Video URL', minWidth: 170 },
+  { id: 'urlAcesso', label: 'Access URL', minWidth: 170 },
+  { id: 'delete', label: '', minWidth: 50 },
 ];
 
 export default function GamesTable({ token }) {
@@ -27,7 +27,7 @@ export default function GamesTable({ token }) {
   const [gamesData, setGamesData] = useState([]);
 
   axios
-    .get("http://localhost:3000/games", {
+    .get('http://localhost:3000/games', {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -64,7 +64,7 @@ export default function GamesTable({ token }) {
       })
       .then((response) => {
         if (response.status === 200) {
-          console.log("excluiu");
+          console.log('excluiu');
         }
       })
       .catch((error) => {
@@ -72,7 +72,7 @@ export default function GamesTable({ token }) {
       });
   };
   return (
-    <Paper sx={{ width: "100%", overflow: "hidden" }}>
+    <Paper sx={{ width: '100%', overflow: 'hidden' }}>
       <TableContainer sx={{ maxHeight: 440 }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
@@ -97,7 +97,7 @@ export default function GamesTable({ token }) {
                     {columns.map((column) => {
                       return (
                         <TableCell key={column.id} align="left">
-                          {column.id === "delete" ? (
+                          {column.id === 'delete' ? (
                             <IconButton
                               aria-label="delete"
                               onClick={() => handleDelete(row.id)}

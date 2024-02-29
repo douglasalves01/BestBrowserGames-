@@ -1,20 +1,20 @@
-import * as React from "react";
-import Paper from "@mui/material/Paper";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TablePagination from "@mui/material/TablePagination";
-import TableRow from "@mui/material/TableRow";
-import IconButton from "@mui/material/IconButton";
-import DeleteIcon from "@mui/icons-material/Delete";
-import { useState } from "react";
-import PropTypes from "prop-types";
-import axios from "axios";
+import * as React from 'react';
+import Paper from '@mui/material/Paper';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TablePagination from '@mui/material/TablePagination';
+import TableRow from '@mui/material/TableRow';
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
+import { useState } from 'react';
+import PropTypes from 'prop-types';
+import axios from 'axios';
 const columns = [
-  { id: "categoria", label: "Category", minWidth: 170 },
-  { id: "delete", label: "", minWidth: 50 },
+  { id: 'categoria', label: 'Category', minWidth: 170 },
+  { id: 'delete', label: '', minWidth: 50 },
 ];
 
 export default function CategoriaTable({ token }) {
@@ -23,7 +23,7 @@ export default function CategoriaTable({ token }) {
   const [gamesData, setGamesData] = useState([]);
 
   axios
-    .get("http://localhost:3000/categoria", {
+    .get('http://localhost:3000/categoria', {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -55,7 +55,7 @@ export default function CategoriaTable({ token }) {
       })
       .then((response) => {
         if (response.status === 200) {
-          console.log("excluiu");
+          console.log('excluiu');
         }
       })
       .catch((error) => {
@@ -63,7 +63,7 @@ export default function CategoriaTable({ token }) {
       });
   };
   return (
-    <Paper sx={{ width: "100%", overflow: "hidden" }}>
+    <Paper sx={{ width: '100%', overflow: 'hidden' }}>
       <TableContainer sx={{ maxHeight: 440 }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
@@ -88,7 +88,7 @@ export default function CategoriaTable({ token }) {
                     {columns.map((column) => {
                       return (
                         <TableCell key={column.id} align="left">
-                          {column.id === "delete" ? (
+                          {column.id === 'delete' ? (
                             <IconButton
                               aria-label="delete"
                               onClick={() => handleDelete(row.id)}

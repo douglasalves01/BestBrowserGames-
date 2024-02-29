@@ -1,10 +1,10 @@
-import Box from "@mui/material/Box";
-import NavBar from "../components/NavBar";
-import PropTypes from "prop-types";
-import { useState } from "react";
-import axios from "axios";
-import ContentAvaliates from "../components/ContentAvaliates";
-import { useParams } from "react-router-dom";
+import Box from '@mui/material/Box';
+import NavBar from '../components/NavBar';
+import PropTypes from 'prop-types';
+import { useState } from 'react';
+import axios from 'axios';
+import ContentAvaliates from '../components/ContentAvaliates';
+import { useParams } from 'react-router-dom';
 
 const Games = ({ token }) => {
   const [gamesData, setGamesData] = useState([]);
@@ -38,18 +38,18 @@ const Games = ({ token }) => {
         <img
           src={gamesData.image}
           alt={gamesData.nome}
-          style={{ maxWidth: "100%", minWidth: "100%", height: "100%" }}
+          style={{ maxWidth: '100%', minWidth: '100%', height: '100%' }}
         />
       </div>
       <Box
         sx={{
           backgroundImage: "url('caminho/para/sua/imagem.jpg')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          height: "100%",
-          display: "flex",
-          alignItems: "start",
-          justifyContent: "start",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          height: '100%',
+          display: 'flex',
+          alignItems: 'start',
+          justifyContent: 'start',
           pt: 10,
         }}
       >

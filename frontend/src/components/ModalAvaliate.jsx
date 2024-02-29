@@ -1,17 +1,17 @@
-import Typography from "@mui/material/Typography";
-import Modal from "@mui/material/Modal";
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
-import { useState } from "react";
-import Alert from "@mui/material/Alert";
-import Button from "@mui/material/Button";
-import Rating from "@mui/material/Rating";
-import axios from "axios";
+import Typography from '@mui/material/Typography';
+import Modal from '@mui/material/Modal';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import { useState } from 'react';
+import Alert from '@mui/material/Alert';
+import Button from '@mui/material/Button';
+import Rating from '@mui/material/Rating';
+import axios from 'axios';
 
 const ModalAvaliate = ({ open, handleClose, nome, id, token }) => {
-  const [comentario, setComentario] = useState("");
-  const [error, setError] = useState("");
-  const [successMessage, setSuccessMessage] = useState("");
+  const [comentario, setComentario] = useState('');
+  const [error, setError] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
   const [avaliate, setAvaliate] = useState(0);
 
   const handleSubmit = async (event) => {
@@ -46,13 +46,13 @@ const ModalAvaliate = ({ open, handleClose, nome, id, token }) => {
     >
       <Box
         sx={{
-          position: "absolute",
-          top: "30%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
+          position: 'absolute',
+          top: '30%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
           width: 500,
-          bgcolor: "background.paper",
-          border: "px solid #000",
+          bgcolor: 'background.paper',
+          border: 'px solid #000',
           boxShadow: 15,
           p: 4,
         }}
@@ -66,9 +66,9 @@ const ModalAvaliate = ({ open, handleClose, nome, id, token }) => {
           noValidate
           sx={{
             mt: 1,
-            width: "500px",
-            display: "flex",
-            flexDirection: "column",
+            width: '500px',
+            display: 'flex',
+            flexDirection: 'column',
           }}
         >
           <Rating
@@ -91,12 +91,12 @@ const ModalAvaliate = ({ open, handleClose, nome, id, token }) => {
             onChange={(event) => setComentario(event.target.value)}
           />
           {successMessage && (
-            <Alert severity="success" sx={{ width: "450px" }}>
+            <Alert severity="success" sx={{ width: '450px' }}>
               {successMessage}
             </Alert>
           )}
           {error && (
-            <Alert severity="warning" sx={{ width: "450px" }}>
+            <Alert severity="warning" sx={{ width: '450px' }}>
               {error}
             </Alert>
           )}
@@ -104,7 +104,7 @@ const ModalAvaliate = ({ open, handleClose, nome, id, token }) => {
             type="submit"
             fullWidth
             variant="contained"
-            sx={{ mt: 3, width: "450px" }}
+            sx={{ mt: 3, width: '450px' }}
           >
             Avaliar
           </Button>

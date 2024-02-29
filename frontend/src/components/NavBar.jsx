@@ -1,17 +1,17 @@
-import * as React from "react";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import Badge from "@mui/material/Badge";
-import MenuItem from "@mui/material/MenuItem";
-import Menu from "@mui/material/Menu";
-import AccountCircle from "@mui/icons-material/AccountCircle";
-import MailIcon from "@mui/icons-material/Mail";
-import NotificationsIcon from "@mui/icons-material/Notifications";
-import MoreIcon from "@mui/icons-material/MoreVert";
-import { useNavigate } from "react-router-dom";
+import * as React from 'react';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import Badge from '@mui/material/Badge';
+import MenuItem from '@mui/material/MenuItem';
+import Menu from '@mui/material/Menu';
+import AccountCircle from '@mui/icons-material/AccountCircle';
+import MailIcon from '@mui/icons-material/Mail';
+import NotificationsIcon from '@mui/icons-material/Notifications';
+import MoreIcon from '@mui/icons-material/MoreVert';
+import { useNavigate } from 'react-router-dom';
 
 export default function NavBar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -32,7 +32,7 @@ export default function NavBar() {
   const handleMenuClose = () => {
     setAnchorEl(null);
     handleMobileMenuClose();
-    localStorage.removeItem("token");
+    localStorage.removeItem('token');
     return <Navigate to="/login" />;
   };
 
@@ -40,22 +40,22 @@ export default function NavBar() {
     setMobileMoreAnchorEl(event.currentTarget);
   };
   const handleLogout = () => {
-    localStorage.removeItem("token");
-    navigate("/login");
+    localStorage.removeItem('token');
+    navigate('/login');
   };
-  const menuId = "primary-search-account-menu";
+  const menuId = 'primary-search-account-menu';
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
       anchorOrigin={{
-        vertical: "top",
-        horizontal: "right",
+        vertical: 'top',
+        horizontal: 'right',
       }}
       id={menuId}
       keepMounted
       transformOrigin={{
-        vertical: "top",
-        horizontal: "right",
+        vertical: 'top',
+        horizontal: 'right',
       }}
       open={isMenuOpen}
       onClose={handleMenuClose}
@@ -64,19 +64,19 @@ export default function NavBar() {
     </Menu>
   );
 
-  const mobileMenuId = "primary-search-account-menu-mobile";
+  const mobileMenuId = 'primary-search-account-menu-mobile';
   const renderMobileMenu = (
     <Menu
       anchorEl={mobileMoreAnchorEl}
       anchorOrigin={{
-        vertical: "top",
-        horizontal: "right",
+        vertical: 'top',
+        horizontal: 'right',
       }}
       id={mobileMenuId}
       keepMounted
       transformOrigin={{
-        vertical: "top",
-        horizontal: "right",
+        vertical: 'top',
+        horizontal: 'right',
       }}
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
@@ -124,13 +124,13 @@ export default function NavBar() {
             variant="h6"
             noWrap
             component="div"
-            sx={{ display: { xs: "none", sm: "block" } }}
+            sx={{ display: { xs: 'none', sm: 'block' } }}
           >
             Best Browser Games
           </Typography>
 
           <Box sx={{ flexGrow: 1 }} />
-          <Box sx={{ display: { xs: "none", md: "flex" } }}>
+          <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
             <IconButton
               size="large"
               aria-label="show 4 new mails"
@@ -161,7 +161,7 @@ export default function NavBar() {
               <AccountCircle />
             </IconButton>
           </Box>
-          <Box sx={{ display: { xs: "flex", md: "none" } }}>
+          <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
               aria-label="show more"

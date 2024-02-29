@@ -3,22 +3,22 @@ import {
   Routes,
   Route,
   Navigate,
-} from "react-router-dom";
-import { useState, useEffect } from "react";
-import Login from "./views/Login";
-import Register from "./views/Register";
-import CadastroCategoria from "./views/CadastroCategoria";
-import CadastroGame from "./views/CadastroGame";
-import Home from "./views/Home";
-import BestBrowserGames from "./views/BestBrowserGames";
-import ContentTable from "./views/ContentTable";
-import ContentCategoria from "./views/ContentCategoria";
-import Game from "./views/Game";
+} from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import Login from './views/Login';
+import Register from './views/Register';
+import CadastroCategoria from './views/CadastroCategoria';
+import CadastroGame from './views/CadastroGame';
+import Home from './views/Home';
+import BestBrowserGames from './views/BestBrowserGames';
+import ContentTable from './views/ContentTable';
+import ContentCategoria from './views/ContentCategoria';
+import Game from './views/Game';
 function App() {
-  const [token, setToken] = useState("");
+  const [token, setToken] = useState('');
 
   useEffect(() => {
-    const authToken = localStorage.getItem("token");
+    const authToken = localStorage.getItem('token');
     setToken(authToken);
   }, []);
 

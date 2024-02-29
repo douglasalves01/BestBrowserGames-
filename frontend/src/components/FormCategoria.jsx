@@ -1,28 +1,28 @@
-import Alert from "@mui/material/Alert";
-import { useState } from "react";
-import Button from "@mui/material/Button";
-import CssBaseline from "@mui/material/CssBaseline";
-import TextField from "@mui/material/TextField";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import PropTypes from "prop-types";
+import Alert from '@mui/material/Alert';
+import { useState } from 'react';
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import PropTypes from 'prop-types';
 
-import axios from "axios";
+import axios from 'axios';
 
 const defaultTheme = createTheme();
 
 const FormCategoria = ({ token }) => {
-  const [categoria, setCategoria] = useState("");
-  const [error, setError] = useState("");
-  const [sucess, setSucess] = useState("");
+  const [categoria, setCategoria] = useState('');
+  const [error, setError] = useState('');
+  const [sucess, setSucess] = useState('');
 
   function handleSubmit(event) {
     event.preventDefault();
     axios
       .post(
-        "http://localhost:3000/categoria/create",
+        'http://localhost:3000/categoria/create',
         { categoria },
         {
           headers: {
@@ -32,7 +32,7 @@ const FormCategoria = ({ token }) => {
       )
       .then((response) => {
         if (response.status === 201) {
-          setCategoria("");
+          setCategoria('');
           setSucess(response.data.message);
         }
       })
@@ -48,9 +48,9 @@ const FormCategoria = ({ token }) => {
         <Box
           sx={{
             marginTop: 8,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
           }}
         >
           <Typography component="h1" variant="h5">
@@ -75,13 +75,13 @@ const FormCategoria = ({ token }) => {
               autoFocus
             />
             {sucess && (
-              <Alert severity="success" onClose={() => setSucess("")}>
+              <Alert severity="success" onClose={() => setSucess('')}>
                 {sucess}
               </Alert>
             )}
 
             {error && (
-              <Alert severity="warning" onClose={() => setError("")}>
+              <Alert severity="warning" onClose={() => setError('')}>
                 {error}
               </Alert>
             )}
